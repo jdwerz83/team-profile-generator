@@ -5,8 +5,8 @@ const inquirer = require("inquirer");
 const path = require("path");
 const fs = require("fs");
 
-const dist = path.resolve(__dirname, "dist"),
-const goToDist = path.join(dist, "roster.html");
+const OUTPUT_DIR = path.resolve(__dirname, "output");
+const outputPath = path.join(OUTPUT_DIR, "roster.html");
 
 const render = require("./lib/htmlRenderer");
 
@@ -126,10 +126,10 @@ function internQuery() {
 };
 
 function createFile() {
-    if (!fs.existsSync(dist)) {
-        fs.mkdirSync(dist)
+    if (!fs.existsSync(OUTPUT_DIR)) {
+        fs.mkdirSync(OUTPUT_DIR)
     }
-    fs.writeFileSync(goToDist, render(teamMembers), "UTF-8");
+    fs.writeFileSync(outputPath, render(teamMembers), "UTF-8");
 }
 
 start();
